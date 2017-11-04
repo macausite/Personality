@@ -15,27 +15,13 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.robotable.personality")
 public class PersonalityConfiguration implements WebMvcConfigurer {
-  /*
-      @Bean
-   
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".jsp");
+
  
-        return viewResolver;
-    }
-@Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
-    }
- */
 	@Autowired
 	  ApplicationContext applicationContext;
 	  
@@ -59,6 +45,23 @@ public class PersonalityConfiguration implements WebMvcConfigurer {
 	  public ViewResolver viewResolver(){
 	      ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 	      viewResolver.setTemplateEngine(templateEngine());
+	      viewResolver.setOrder(0);
+	     // viewResolver.setViewNames(new String[]{"templates/*"});
 	      return viewResolver;
 	  }
+	  
+		@Bean
+	    public ViewResolver getInternalResourceViewResolver() {
+	        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+	        
+	        viewResolver.setOrder(1);
+	         
+	        return viewResolver;
+	    }
+	@Override
+	    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+	        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+	    }
+	    
 }
