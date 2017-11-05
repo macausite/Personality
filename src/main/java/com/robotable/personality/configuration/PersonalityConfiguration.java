@@ -45,19 +45,23 @@ public class PersonalityConfiguration implements WebMvcConfigurer {
 	  public ViewResolver viewResolver(){
 	      ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 	      viewResolver.setTemplateEngine(templateEngine());
-	      viewResolver.setOrder(0);
-	     // viewResolver.setViewNames(new String[]{"templates/*"});
+	   
+	      viewResolver.setOrder(1);
+	        //viewResolver.setViewNames(new String[]{"templates/*"});
 	      return viewResolver;
 	  }
 	  
 		@Bean
 	    public ViewResolver getInternalResourceViewResolver() {
 	        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	        
-	        viewResolver.setOrder(1);
+	        viewResolver.setViewClass(JstlView.class);
+	        viewResolver.setPrefix("/WEB-INF/views/");
+	        viewResolver.setSuffix(".jsp");
+	        viewResolver.setOrder(2);
 	         
 	        return viewResolver;
 	    }
+	    
 	@Override
 	    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 	        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
