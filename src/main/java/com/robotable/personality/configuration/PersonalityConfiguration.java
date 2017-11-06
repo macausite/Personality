@@ -64,8 +64,9 @@ public class PersonalityConfiguration implements WebMvcConfigurer {
 	    
 	@Override
 	    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-	        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	        registry.addResourceHandler("/resources/**").addResourceLocations("/css");
 	        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+	        registry.addResourceHandler("/css/**").addResourceLocations("/css");
 	    }
 	    
 }

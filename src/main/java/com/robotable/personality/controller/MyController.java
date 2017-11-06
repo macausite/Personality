@@ -14,6 +14,6 @@ public class MyController {
   public String handleRequest (Model model) {
       model.addAttribute("msg", "A message from the controller");
       model.addAttribute("time", LocalTime.now());
-      return "my-page";
+      return "index";
   }
 }
